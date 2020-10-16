@@ -91,6 +91,14 @@ public class NerdLauncherFragment extends Fragment {
         public ActivityHolder(@NonNull View itemView) {
             super(itemView);
             mTitleText = (TextView) itemView;
+            mTitleText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
+                    launcherIntent.setClassName(mResolveInfo.activityInfo.packageName, mResolveInfo.activityInfo.applicationInfo.className);
+                    startActivity(launcherIntent);
+                }
+            });
         }
 
         public void bind(ResolveInfo resolveInfo){
